@@ -1,67 +1,59 @@
 <?php
-    $data = json_decode(file_get_contents('php://input'), true);
-    $content = $data["content"];
-
-    switch($content)
+ 
+// 요청을 받아 저장
+$data = json_decode(file_get_contents('php://input'), true);
+ 
+// 받은 요청에서 content 항목 설정
+$content = $data["content"];
+ 
+ 
+ 
+// 카테고리 버튼을 눌러을 때
+if( $content == "카테고리" ){
+echo <<< EOD
     {
-        case "메뉴1":
-            echo '
-                {
-                    "message":
-                    {
-                        "text": "메뉴1을 선택하셨습니다."
-                    },
-                    "keyboard":
-                    {
-                        "type": "buttons",
-                        "buttons": ["메뉴1", "메뉴2", "메뉴3"]
-                    }
-                }';
-            break;
-
-        case "메뉴2":
-            echo '
-                {
-                    "message":
-                    {
-                        "text": "메뉴2를 선택하셨습니다."
-                    },
-                    "keyboard":
-                    {
-                        "type": "buttons",
-                        "buttons": ["메뉴1", "메뉴2", "메뉴3"]
-                    }
-                }';
-            break;
-
-        case "메뉴3":
-            echo '
-                {
-                    "message":
-                    {
-                        "text": "메뉴3을 선택하셨습니다."
-                    },
-                    "keyboard":
-                    {
-                        "type": "buttons",
-                        "buttons": ["메뉴1", "메뉴2", "메뉴3"]
-                    }
-                }';
-            break;
-
-        default:
-            echo '
-                {
-                    "message":
-                    {
-                        "text": "잘못된 벨류입니다."
-                    },
-                    "keyboard":
-                    {
-                        "type": "buttons",
-                        "buttons": ["메뉴1", "메뉴2", "메뉴3"]
-                    }
-                }';
-            break;
+        "message": {
+            "text": "카테고리별 입력입니다."
+        }
     }
+EOD;
+}
+ 
+ 
+ 
+// 2.'검색하기' 버튼 처리
+else if( $content == "검색"){
+echo <<< EOD
+    {
+        "message": {
+            "text": "검색어를 입력하세요."
+        }
+    }    
+EOD;
+}
+ 
+ 
+// 3. '도움말'이란 단어가 포함되었을때 처리
+else if( strpos($content, "도움말") !== false ){
+echo <<< EOD
+    {
+        "message": {
+            "text": "도움이 필요하신가요?"
+        }
+    }    
+EOD;
+}
+ 
+ 
+// 4. ELSE처리
+else{
+echo <<< EOD
+    {
+        "message": {
+            "text": "ELSE"
+        }
+    }    
+EOD;
+}
+ 
 ?>
