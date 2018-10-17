@@ -1,7 +1,10 @@
 <?php
-    echo '
-    {
-        "type": "buttons",
-        "buttons": ["메뉴1", "메뉴2", "메뉴3"]
-    }';
+ 
+echo <<< EOD
+{
+    "type" : "buttons",
+    "buttons" : ["카테고리", "검색"]
+}
+EOD;
+ 
 ?>
